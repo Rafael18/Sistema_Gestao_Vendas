@@ -1,0 +1,57 @@
+﻿@model LoginModel
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+<section class="gradient-custom">
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <div class="mb-md-5 mt-md-4 pb-5">
+
+                            <h2 class="fw-bold mb-2 text-uppercase">Sistema Vendas</h2>
+                            @{
+                                if(TempData["ErrorLogin"] != null)
+                                {
+                                    var erro = TempData["ErrorLogin"].ToString();
+                                    <span class="text-danger">@erro</span>
+                                }
+                            }
+                            <form asp-controller="Home" asp-action="Login" method="post">
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" for="email">Email</label>
+                                    <input type="email" asp-for="Email" id="email" class="form-control form-control-lg" placeholder="Informe o e-mail..." />
+                                </div>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" for="senha">Senha</label>
+                                    <input type="password" asp-for="Senha" id="senha" class="form-control form-control-lg" placeholder="Informe a senha..." />
+                                </div>
+                                <span asp-validation-for="Senha" class="text-danger"></span>
+
+                                <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Esqueceu a senha?</a></p>
+
+                                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                            </form>
+                        </div>
+
+                        <div>
+                            <p class="mb-0">
+                                Não tem uma conta? <a href="#!" class="text-white-50 fw-bold">Crie aqui!</a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
